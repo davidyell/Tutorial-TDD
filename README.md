@@ -1,3 +1,6 @@
-#NetTuts+ UnitTesting with TDD Tutorial
-[http://net.tutsplus.com/tutorials/php/automatic-testing-for-tdd-with-php/](Automatic testing for TDD with PHP). This is part 4 of 12 in the tutorial.
+#NetTuts+ Test Driven PHP
+This is the code I created as part of the 12 step Testing tutorial on NetTuts+.  
 
+[NetTuts+ Test Driven PHP](http://net.tutsplus.com/sessions/test-driven-php/)
+
+I'm keeping this code mainly as reference.
