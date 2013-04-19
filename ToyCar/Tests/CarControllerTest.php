@@ -12,6 +12,8 @@ use ToyCar\CarInterface\Electronics;
 use ToyCar\CarInterface\Engine;
 use ToyCar\CarInterface\Gearbox;
 use ToyCar\CarInterface\Lights;
+use ToyCar\Tests\Spies\SpyingElectronics;
+use ToyCar\Tests\Spies\SpyingStatusPanel;
 
 class CarControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,6 +28,9 @@ class CarControllerTest extends \PHPUnit_Framework_TestCase
         require_once 'CarInterface/Gearbox.php';
         require_once 'CarInterface/Electronics.php';
         require_once 'CarInterface/Lights.php';
+
+        require_once 'Spies/SpyingElectronics.php';
+        require_once 'Spies/SpyingStatusPanel.php';
 
         $this->CarController = new CarController();
         $this->Engine = new Engine();
@@ -58,6 +63,27 @@ class CarControllerTest extends \PHPUnit_Framework_TestCase
             ->method('engineIsRunning')
             ->will($this->returnValue(true));
 
-        $this->CarController->goForward($this->Electronics, $stubStatusPanel);
+
+        $electronics = $this->getMock('ToyCar\\CarInterface\\Electronics');
+        $electronics->expects($this->once())
+            ->method('accelerate');
+
+        $this->CarController->goForward($electronics, $stubStatusPanel);
+    }
+
+    /**
+     * Make sure that the brakes work
+     */
+    public function testItCanStop()
+    {
+        $halfBrakingPower = 50;
+        $electronicsSpy = new SpyingElectronics();
+        $statusPanelSpy = new SpyingStatusPanel();
+
+        $this->CarController->stop($halfBrakingPower, $electronicsSpy, $statusPanelSpy);
+
+        $this->assertEquals($halfBrakingPower, $electronicsSpy->getBrakingPower());
+        $this->assertTrue($statusPanelSpy->getSpeedWasRequested(), "Speed was not requested whilst braking");
+        $this->assertEquals(0, $statusPanelSpy->spyOnSpeed(), "After stopping, speed should be 0");
     }
 }

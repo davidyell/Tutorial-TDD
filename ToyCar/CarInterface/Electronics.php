@@ -25,4 +25,9 @@ class Electronics
     {
         return true;
     }
+
+    public function pushBrakes($brakingPower)
+    {
+
+    }
 }

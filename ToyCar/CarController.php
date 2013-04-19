@@ -55,9 +55,29 @@ class CarController
         if (!$statusPanel) {
             $statusPanel = new StatusPanel();
         }
-        
+
         if ($statusPanel->engineIsRunning() && $statusPanel->thereIsEnoughFuel()) {
             $electronics->accelerate();
+        }
+    }
+
+    /**
+     * Slow the car down
+     *
+     * @param int $brakingPower Amount of brake being applied between 0 and 100
+     * @param \ToyCar\CarInterface\Electronics $electronics
+     */
+    public function stop($brakingPower, Electronics $electronics, StatusPanel $statusPanel = null)
+    {
+        if (!$statusPanel) {
+            $statusPanel = new StatusPanel();
+        }
+
+        $electronics->pushBrakes($brakingPower);
+
+        // Have we stopped yet?
+        if ($statusPanel->getSpeed()) {
+            $this->stop($brakingPower, $electronics, $statusPanel);
         }
     }
 }

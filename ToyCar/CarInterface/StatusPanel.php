@@ -11,11 +11,13 @@ class StatusPanel
 {
     public function engineIsRunning()
     {
-        return true;
     }
 
     public function thereIsEnoughFuel()
     {
-        return true;
+    }
+
+    public function getSpeed()
+    {
     }
 }
