@@ -1,5 +1,18 @@
 <phpunit
     colors="true"
 >
-    <!-- ... -->
+    <testsuites>
+        <testsuite named="NetTuts">
+            <file>NetTuts/Tests/NettutsTest.php</file>
+        </testsuite>
+        <testsuite named="Selenium">
+            <file>Selenium/Tests/TestLogin.php</file>
+        </testsuite>
+        <testsuite named="ToyCar">
+            <file>ToyCar/Tests/CarControllerTest.php</file>
+        </testsuite>
+        <testsuite named="Wrapper">
+            <file>Wrapper/Tests/WrapperTest.php</file>
+        </testsuite>
+    </testsuites>
 </phpunit>
