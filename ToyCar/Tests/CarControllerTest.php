@@ -77,13 +77,21 @@ class CarControllerTest extends \PHPUnit_Framework_TestCase
     public function testItCanStop()
     {
         $halfBrakingPower = 50;
-        $electronicsSpy = new SpyingElectronics();
-        $statusPanelSpy = new SpyingStatusPanel();
 
-        $this->CarController->stop($halfBrakingPower, $electronicsSpy, $statusPanelSpy);
+        $electronicsSpy = $this->getMock('ToyCar\\CarInterface\\Electronics');
+        $electronicsSpy->expects($this->exactly(2))
+            ->method('pushBrakes')
+            ->with($halfBrakingPower);
 
-        $this->assertEquals($halfBrakingPower, $electronicsSpy->getBrakingPower());
-        $this->assertTrue($statusPanelSpy->getSpeedWasRequested(), "Speed was not requested whilst braking");
-        $this->assertEquals(0, $statusPanelSpy->spyOnSpeed(), "After stopping, speed should be 0");
+        $statusPanelSpy = $this->getMock('ToyCar\\CarInterface\\StatusPanel');
+        $statusPanelSpy->expects($this->at(0))
+            ->method('getSpeed')
+            ->will($this->returnValue(1));
+        $statusPanelSpy->expects($this->at(1))
+            ->method('getSpeed')
+            ->will($this->returnValue(0));
+
+        $carController = new CarController();
+        $carController->stop($halfBrakingPower, $electronicsSpy, $statusPanelSpy);
     }
 }
