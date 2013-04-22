@@ -6,7 +6,7 @@
             <file>NetTuts/Tests/NettutsTest.php</file>
         </testsuite>
         <testsuite named="Selenium">
-            <file>Selenium/Tests/TestLogin.php</file>
+            <file>Selenium/Tests/LoginTest.php</file>
         </testsuite>
         <testsuite named="ToyCar">
             <file>ToyCar/Tests/CarControllerTest.php</file>
