@@ -5,23 +5,20 @@
  * @author David Yell <neon1024@gmail.com>
  */
 
-namespace Tests;
+namespace NetTuts\Tests;
+
+use NetTuts\Classes\Nettuts;
+
+require_once 'NetTuts/Classes/Nettuts.php';
 
 class NettutsTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $object;
 
-    public function __construct($name = null, array $data = array(), $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        require_once dirname(__FILE__) . '/../Classes/Nettuts.php';
-    }
-
     protected function setUp()
     {
-        $this->object = new Nettuts;
+        $this->object = new Nettuts();
     }
 
     protected function tearDown()
