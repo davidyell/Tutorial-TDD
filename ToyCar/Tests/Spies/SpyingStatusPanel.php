@@ -9,7 +9,7 @@ namespace ToyCar\Tests\Spies;
 
 use ToyCar\CarInterface\StatusPanel;
 
-require_once 'CarInterface/StatusPanel.php';
+require_once 'ToyCar/CarInterface/StatusPanel.php';
 
 class SpyingStatusPanel extends StatusPanel
 {

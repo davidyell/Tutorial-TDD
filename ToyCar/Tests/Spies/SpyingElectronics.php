@@ -9,7 +9,7 @@ namespace ToyCar\Tests\Spies;
 
 use ToyCar\CarInterface\Electronics;
 
-require_once 'CarInterface/Electronics.php';
+require_once 'ToyCar/CarInterface/Electronics.php';
 
 class SpyingElectronics extends Electronics
 {

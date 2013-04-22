@@ -23,14 +23,14 @@ class CarControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        require_once 'CarController.php';
-        require_once 'CarInterface/Engine.php';
-        require_once 'CarInterface/Gearbox.php';
-        require_once 'CarInterface/Electronics.php';
-        require_once 'CarInterface/Lights.php';
+        require_once 'ToyCar/CarController.php';
+        require_once 'ToyCar/CarInterface/Engine.php';
+        require_once 'ToyCar/CarInterface/Gearbox.php';
+        require_once 'ToyCar/CarInterface/Electronics.php';
+        require_once 'ToyCar/CarInterface/Lights.php';
 
-        require_once 'Spies/SpyingElectronics.php';
-        require_once 'Spies/SpyingStatusPanel.php';
+        require_once 'ToyCar/Tests/Spies/SpyingElectronics.php';
+        require_once 'ToyCar/Tests/Spies/SpyingStatusPanel.php';
 
         $this->CarController = new CarController();
         $this->Engine = new Engine();
